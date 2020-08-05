@@ -84,6 +84,13 @@ class Student:
         self.txt_address = Text(manage_frame, bd=3, relief=RIDGE, width=30, height=3, font=("", 10))
         self.txt_address.grid(row=7, column=1, pady=10, padx=10, sticky="w")
 
+        # Button Frame================================================================================================
+        btn_frame = Frame(manage_frame, bg="white", bd=2, relief=GROOVE)
+        btn_frame.place(x=0, y=490, width=430)
+
+        addbtn = Button(btn_frame, command=self.add_student, text="Add", width=10)
+        addbtn.grid(row=0, column=0, padx=10, pady=10)
+
 
 root = Tk()
 ob = Student(root)
