@@ -91,6 +91,28 @@ class Student:
         addbtn = Button(btn_frame, command=self.add_student, text="Add", width=10)
         addbtn.grid(row=0, column=0, padx=10, pady=10)
 
+        update_btn = Button(btn_frame, command=self.update, text="Update", width=10)
+        update_btn.grid(row=0, column=1, padx=10, pady=10)
+
+        clear_btn = Button(btn_frame, command=self.clear, text="Clear", width=10)
+        clear_btn.grid(row=0, column=2, padx=10, pady=10)
+
+        delete_btn = Button(btn_frame, command=self.delete_data, text="Delete", width=10)
+        delete_btn.grid(row=0, column=3, padx=10, pady=10)
+
+        # Detail Frame================================================================================================
+
+        detail_frame = Frame(self.root, bd=4, relief=GROOVE, bg="white")
+        detail_frame.place(x=450, y=100, height=550, width=800)
+
+        lbl_search = Label(detail_frame, text="Search By", bg="white", fg="red", font=("times new roman", 20, "bold"))
+        lbl_search.grid(row=0, column=0, pady=10, padx=10, sticky="w")
+
+        combo_search = ttk.Combobox(detail_frame, width=5, textvariable=self.search_by, state="readonly",
+                                    font=("times new roman", 14, "bold"))
+        combo_search['values'] = ("roll", "name", "contact")
+        combo_search.grid(row=0, column=1, padx=10, pady=10)
+
 
 root = Tk()
 ob = Student(root)
