@@ -113,6 +113,16 @@ class Student:
         combo_search['values'] = ("roll", "name", "contact")
         combo_search.grid(row=0, column=1, padx=10, pady=10)
 
+        txt_search = Entry(detail_frame, bd=3, width=10, textvariable=self.search_txt, relief=RIDGE,
+                           font=("times new roman", 14, "bold"))
+        txt_search.grid(row=0, column=2, padx=10, pady=10)
+
+        search_btn = Button(detail_frame, command=self.search_data, text="Search", width=10)
+        search_btn.grid(row=0, column=3, padx=10, pady=10)
+
+        show_btn = Button(detail_frame, command=self.fetch_data, text="Show All", width=10)
+        show_btn.grid(row=0, column=4, padx=10, pady=10)
+
 
 root = Tk()
 ob = Student(root)
