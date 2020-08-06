@@ -124,6 +124,14 @@ class Student:
         show_btn.grid(row=0, column=4, padx=10, pady=10)
 
 
+        # DetailFrame====================================================================================
+
+        table_frame = Frame(detail_frame, bg="white")
+        table_frame.place(x=10, y=60, width=800, height=480)
+
+        
+
+
 root = Tk()
 ob = Student(root)
 root.mainloop()
