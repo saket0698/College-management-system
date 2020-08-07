@@ -129,7 +129,24 @@ class Student:
         table_frame = Frame(detail_frame, bg="white")
         table_frame.place(x=10, y=60, width=800, height=480)
 
-        
+        scroll_x = Scrollbar(table_frame, orient=HORIZONTAL)
+        scroll_y = Scrollbar(table_frame, orient=VERTICAL)
+
+        self.student_table = ttk.Treeview(table_frame,
+                                          columns=("roll", "name", "Email", "gender", "contact", "dob", "address"),
+                                          xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
+        scroll_x.pack(side=BOTTOM, fill=X)
+        scroll_y.pack(side=RIGHT, fill=Y)
+        scroll_x.config(command=self.student_table.xview)
+        scroll_y.config(command=self.student_table.yview)
+        self.student_table.heading("roll", text="Roll No")
+        self.student_table.heading("name", text="Name")
+        self.student_table.heading("Email", text="Email")
+        self.student_table.heading("gender", text="Gender")
+        self.student_table.heading("contact", text="Contact")
+        self.student_table.heading("dob", text="D.O.B")
+        self.student_table.heading("address", text="Address")
+        self.student_table['show'] = 'headings'
 
 
 root = Tk()
