@@ -148,6 +148,17 @@ class Student:
         self.student_table.heading("address", text="Address")
         self.student_table['show'] = 'headings'
 
+        self.student_table.column("roll", width=90)
+        self.student_table.column("name", width=100)
+        self.student_table.column("Email", width=100)
+        self.student_table.column("gender", width=100)
+        self.student_table.column("contact", width=100)
+        self.student_table.column("dob", width=100)
+        self.student_table.column("address", width=180)
+
+        self.student_table.pack(fill=BOTH, expand=1)
+        self.fetch_data()
+
 
 root = Tk()
 ob = Student(root)
