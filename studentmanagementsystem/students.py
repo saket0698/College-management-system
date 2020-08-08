@@ -148,16 +148,17 @@ class Student:
         self.student_table.heading("address", text="Address")
         self.student_table['show'] = 'headings'
 
-        self.student_table.column("roll", width=90)
-        self.student_table.column("name", width=100)
-        self.student_table.column("Email", width=100)
-        self.student_table.column("gender", width=100)
-        self.student_table.column("contact", width=100)
-        self.student_table.column("dob", width=100)
-        self.student_table.column("address", width=180)
-
-        self.student_table.pack(fill=BOTH, expand=1)
+    def add_student(self):
+        con = psycopg2.connect(host="localhost", database="student", user="postgres", password="Infinity06", port=5432)
+        cur = con.cursor()
+        cur.execute("insert into stm values(%s,%s,%s,%s,%s,%s,%s)", (
+            self.rollno_var.get(), self.name_var.get(), self.email_var.get(), self.gender_var.get(),
+            self.contact_var.get(),
+            self.dob_var.get(), self.txt_address.get('1.0', END)))
+        con.commit()
         self.fetch_data()
+        self.clear()
+        con.close()
 
 
 root = Tk()
