@@ -172,6 +172,15 @@ class Student:
         self.clear()
         con.close()
 
+    def clear(self):
+        self.rollno_var.set("")
+        self.name_var.set("")
+        self.gender_var.set("")
+        self.email_var.set("")
+        self.dob_var.set("")
+        self.contact_var.set("")
+        self.txt_address.delete("1.0", END)
+
 
 root = Tk()
 ob = Student(root)
