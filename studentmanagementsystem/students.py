@@ -148,6 +148,18 @@ class Student:
         self.student_table.heading("address", text="Address")
         self.student_table['show'] = 'headings'
 
+    def fetch_data(self):
+        con = psycopg2.connect(host="localhost", database="student", user="postgres", password="Infinity06", port=5432)
+        cur = con.cursor()
+        cur.execute("select * from stm order by roll ")
+        rows = cur.fetchall()
+        if len(rows) != 0:
+            self.student_table.delete(*self.student_table.get_children())
+            for row in rows:
+                self.student_table.insert('', END, values=row)
+            con.commit()
+        con.close()
+
     def add_student(self):
         con = psycopg2.connect(host="localhost", database="student", user="postgres", password="Infinity06", port=5432)
         cur = con.cursor()
