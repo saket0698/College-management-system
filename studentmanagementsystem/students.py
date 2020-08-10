@@ -37,14 +37,14 @@ class Student:
         lbl_roll = Label(manage_frame, text="Roll No.", bg="white", fg="red", font=("times new roman", 20, "bold"))
         lbl_roll.grid(row=1, column=0, pady=10, padx=10, sticky="w")
 
-        txt_roll = Entry(manage_frame,textvariable=self.rollno_var,  font=("times new roman", 15, "bold"), bd=5,
+        txt_roll = Entry(manage_frame,textvariable=self.rollno_var,font=("times new roman", 15, "bold"), bd=5,
                          relief=GROOVE)
         txt_roll.grid(row=1, column=1, pady=10, padx=10, sticky="w")
 
         lbl_name = Label(manage_frame, text="Name", bg="white", fg="red", font=("times new roman", 20, "bold"))
         lbl_name.grid(row=2, column=0, pady=10, padx=10, sticky="w")
 
-        txt_name = Entry(manage_frame,textvariable=self.name_var ,font=("times new roman", 15, "bold"), bd=5,
+        txt_name = Entry(manage_frame,textvariable=self.name_var, font=("times new roman", 15, "bold"), bd=5,
                          relief=GROOVE)
         txt_name.grid(row=2, column=1, pady=10, padx=10, sticky="w")
 
@@ -180,6 +180,17 @@ class Student:
         self.dob_var.set("")
         self.contact_var.set("")
         self.txt_address.delete("1.0", END)
+
+    def update(self):
+        con = psycopg2.connect(host="localhost", database="student", user="postgres", password="Infinity06", port=5432)
+        cur = con.cursor()
+        cur.execute("update stm set name=%s,email=%s,gender=%s,contact=%s,dob=%s,address=%s where roll=%s", (
+            self.name_var.get(), self.email_var.get(), self.gender_var.get(), self.contact_var.get(),
+            self.dob_var.get(), self.txt_address.get('1.0', END), self.rollno_var.get()))
+        con.commit()
+        self.fetch_data()
+        self.clear()
+        con.close()
 
 
 root = Tk()
