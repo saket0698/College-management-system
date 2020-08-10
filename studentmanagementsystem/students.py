@@ -4,8 +4,8 @@ import psycopg2
 
 
 class Student:
-
     def __init__(self, root):
+
         self.root = root
         self.root.title("Students Management System")
         self.root.geometry("1350x700+0+0")
@@ -37,14 +37,14 @@ class Student:
         lbl_roll = Label(manage_frame, text="Roll No.", bg="white", fg="red", font=("times new roman", 20, "bold"))
         lbl_roll.grid(row=1, column=0, pady=10, padx=10, sticky="w")
 
-        txt_roll = Entry(manage_frame,textvariable=self.rollno_var,font=("times new roman", 15, "bold"), bd=5,
+        txt_roll = Entry(manage_frame, textvariable=self.rollno_var, font=("times new roman", 15, "bold"), bd=5,
                          relief=GROOVE)
         txt_roll.grid(row=1, column=1, pady=10, padx=10, sticky="w")
 
         lbl_name = Label(manage_frame, text="Name", bg="white", fg="red", font=("times new roman", 20, "bold"))
         lbl_name.grid(row=2, column=0, pady=10, padx=10, sticky="w")
 
-        txt_name = Entry(manage_frame,textvariable=self.name_var, font=("times new roman", 15, "bold"), bd=5,
+        txt_name = Entry(manage_frame, textvariable=self.name_var, font=("times new roman", 15, "bold"), bd=5,
                          relief=GROOVE)
         txt_name.grid(row=2, column=1, pady=10, padx=10, sticky="w")
 
@@ -122,7 +122,6 @@ class Student:
 
         show_btn = Button(detail_frame, command=self.fetch_data, text="Show All", width=10)
         show_btn.grid(row=0, column=4, padx=10, pady=10)
-
 
         # DetailFrame====================================================================================
 
@@ -224,8 +223,6 @@ class Student:
         con.close()
         self.fetch_data()
         self.clear()
-
-
 
 
 root = Tk()
