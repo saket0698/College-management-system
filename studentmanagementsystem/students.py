@@ -148,6 +148,17 @@ class Student:
         self.student_table.heading("address", text="Address")
         self.student_table['show'] = 'headings'
 
+        self.student_table.column("roll", width=90)
+        self.student_table.column("name", width=100)
+        self.student_table.column("Email", width=100)
+        self.student_table.column("gender", width=100)
+        self.student_table.column("contact", width=100)
+        self.student_table.column("dob", width=100)
+        self.student_table.column("address", width=180)
+
+        self.student_table.pack(fill=BOTH, expand=1)
+        self.fetch_data()
+
     def fetch_data(self):
         con = psycopg2.connect(host="localhost", database="student", user="postgres", password="Infinity06", port=5432)
         cur = con.cursor()
@@ -204,6 +215,17 @@ class Student:
                 self.student_table.insert('', END, values=row)
             con.commit()
         con.close()
+
+    def delete_data(self):
+        con = psycopg2.connect(host="localhost", database="student", user="postgres", password="Infinity06", port=5432)
+        cur = con.cursor()
+        cur.execute("delete from stm where roll =%s", self.rollno_var.get())
+        con.commit()
+        con.close()
+        self.fetch_data()
+        self.clear()
+
+
 
 
 root = Tk()
