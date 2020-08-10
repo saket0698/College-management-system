@@ -192,6 +192,19 @@ class Student:
         self.clear()
         con.close()
 
+    def search_data(self):
+        con = psycopg2.connect(host="localhost", database="student", user="postgres", password="Infinity06", port=5432)
+        cur = con.cursor()
+        cur.execute(
+            "select * from stm where " + str(self.search_by.get()) + " LIKE '% " + str(self.search_txt.get() + " %'"))
+        rows = cur.fetchall()
+        if len(rows) != 0:
+            self.student_table.delete(*self.student_table.get_children())
+            for row in rows:
+                self.student_table.insert('', END, values=row)
+            con.commit()
+        con.close()
+
 
 root = Tk()
 ob = Student(root)
